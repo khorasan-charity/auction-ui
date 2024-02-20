@@ -1,0 +1,28 @@
+@tailwind components;
+
+@layer components {
+  .textField__input {
+    @apply form-input w-full outline-none border-2 border-solid border-transparent transition-all focus:border-gray-300 dark:focus:border-gray-500 placeholder:text-gray-400 placeholder:select-none text-base rounded-lg placeholder:text-right bg-gray-100 dark:bg-neutral-700 focus:!ring-0;
+  }
+  .btn {
+    @apply relative h-auto inline-flex items-center justify-center rounded-lg transition-colors px-4 py-1 text-sm font-medium leading-loose;
+  }
+  .btn--primary {
+    @apply text-white bg-primary-500 hover:bg-primary-600 active:bg-primary-700 disabled:text-primary-700 disabled:bg-primary-300 disabled:opacity-100;
+  }
+  .btn--secondary {
+    @apply !text-white bg-secondary-500 hover:bg-secondary-600 active:bg-secondary-700 disabled:text-secondary-700 disabled:bg-secondary-300 disabled:opacity-100;
+  }
+  .btn--neutral {
+    @apply !text-white bg-neutral-500 hover:bg-neutral-600 active:bg-neutral-700 disabled:text-neutral-700 disabled:bg-neutral-300 disabled:opacity-100;
+  }
+  .btn--primary__outline {
+    @apply text-primary-600 border border-primary-600;
+  }
+  .btn--secondary__outline {
+    @apply text-secondary-600 border border-secondary-600;
+  }
+  .btn--neutral__outline {
+    @apply text-neutral-700 dark:text-white dark:border-white border border-neutral-500;
+  }
+}

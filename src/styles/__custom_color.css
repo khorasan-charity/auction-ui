@@ -1,0 +1,38 @@
+@tailwind base;
+
+@layer base {
+  :root {
+    --c-primary-50: 254 253 232;
+    --c-primary-100: 255 252 194;
+    --c-primary-200: 255 246 136;
+    --c-primary-300: 255 233 68;
+    --c-primary-400: 254 213 4;
+    --c-primary-500: 238 190 4;
+    --c-primary-600: 206 147 0;
+    --c-primary-700: 164 104 4;
+    --c-primary-800: 135 82 12;
+    --c-primary-900: 115 67 16;
+
+    --c-secondary-50: 236, 244, 255;
+    --c-secondary-100: 221, 235, 255;
+    --c-secondary-200: 194, 218, 255;
+    --c-secondary-300: 156, 191, 255;
+    --c-secondary-400: 117, 154, 255;
+    --c-secondary-500: 74, 109, 255;
+    --c-secondary-600: 54, 76, 245;
+    --c-secondary-700: 42, 59, 216;
+    --c-secondary-800: 37, 53, 174;
+    --c-secondary-900: 38, 52, 137;
+
+    --c-neutral-50: 249, 250, 251;
+    --c-neutral-100: 243, 244, 246;
+    --c-neutral-200: 229, 231, 235;
+    --c-neutral-300: 209, 213, 219;
+    --c-neutral-400: 156, 163, 175;
+    --c-neutral-500: 107, 114, 128;
+    --c-neutral-600: 75, 85, 99;
+    --c-neutral-700: 55, 65, 81;
+    --c-neutral-800: 31, 41, 55;
+    --c-neutral-900: 17, 24, 39;
+  }
+}
