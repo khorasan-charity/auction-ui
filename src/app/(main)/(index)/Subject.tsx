@@ -1,5 +1,5 @@
 import { Subject as ISubject } from "@/types/subject";
-import { numberToCurrency } from "@/utils/numberToCurrency";
+import Money from "@/ui/Money";
 import {
   Card,
   CardBody,
@@ -20,20 +20,16 @@ const Subject: React.FC<SubjectProps> = (props) => {
   const renderLabelProgress = () => {
     return (
       <div className="flex flex-col items-center justify-center">
-        <strong className="font-bold text-xl">
-          {numberToCurrency(props.collectedAmount, "تومان")}
-        </strong>
+        <Money amount={props.collectedAmount} />
         <span>از</span>
-        <strong className="font-bold text-xl">
-          {numberToCurrency(props.targetAmount, "تومان")}
-        </strong>
+        <Money amount={props.targetAmount} />
       </div>
     );
   };
 
   return (
     <Card
-      className={`w-full col-span-4 md:col-span-3 border-none bg-gradient-to-br ${
+      className={`w-full shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br ${
         !props.progress
           ? colors["neutral"]
           : props.progress < 100
@@ -54,7 +50,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
             track: "stroke-white/10",
             value: "text-3xl font-semibold text-white",
           }}
-          value={props.progress}
+          value={props.progress ?? 0}
           strokeWidth={4}
           showValueLabel={true}
         />

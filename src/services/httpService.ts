@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getCookie } from "../../action";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -10,17 +9,6 @@ const app = axios.create({
   },
 });
 
-app.interceptors.request.use(
-  async (config) => {
-    const token = await getCookie<string>("accessToken");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (err) => Promise.reject(err)
-);
 
 // app.interceptors.response.use(
 //   (res) => res,

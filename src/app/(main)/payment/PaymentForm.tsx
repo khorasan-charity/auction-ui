@@ -1,5 +1,6 @@
 "use client";
 
+import { useSidebarCollapsed } from "@/context/SidebarContext";
 import { addPayments } from "@/services/paymentService";
 import Input from "@/ui/input/Input";
 import { numberToCurrency } from "@/utils/numberToCurrency";
@@ -18,15 +19,16 @@ interface IFormPayment {
 
 const PaymentForm: React.FC<PaymentFormProps> = () => {
   const queryClient = useQueryClient();
+  const { setCollapsed } = useSidebarCollapsed();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    watch
+    watch,
   } = useForm<IFormPayment>();
-  const watchAmount = watch('amount')
+  const watchAmount = watch("amount");
 
   const { mutateAsync: addNewPayment, isPending } = useMutation({
     mutationKey: ["add-payment"],
@@ -43,7 +45,7 @@ const PaymentForm: React.FC<PaymentFormProps> = () => {
               queryKey: ["get-payment"],
             });
             toast.success("پرداخت با موفقیت ثبت شد");
-            document.getElementById("amount")?.focus()
+            document.getElementById("amount")?.focus();
           },
         });
       } catch (_) {

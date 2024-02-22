@@ -1,3 +1,5 @@
+import SidebarProvider from "@/context/SidebarContext";
+import ToggleSidebar from "@/ui/ToggleSidebar";
 import Sidebar from "./Sidebar";
 
 export default async function MainLayout({
@@ -6,10 +8,15 @@ export default async function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="container xl:max-w-screen-xl h-screen py-3">
+    <div className="container h-screen py-3">
       <div className="w-full h-full flex gap-x-4">
-        <Sidebar />
-        <main className="h-full flex-1 overflow-y-auto hideSB">{children}</main>
+        <SidebarProvider>
+          <ToggleSidebar />
+          <Sidebar />
+          <main className="h-full flex-1 overflow-y-auto hideSB container w-full xl:max-w-screen-xl px-4">
+            {children}
+          </main>
+        </SidebarProvider>
       </div>
     </div>
   );

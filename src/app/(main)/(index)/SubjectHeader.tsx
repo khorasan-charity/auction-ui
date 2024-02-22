@@ -6,13 +6,13 @@ interface SubjectHeaderProps {}
 
 const SubjectHeader: React.FC<SubjectHeaderProps> = () => {
   return (
-    <Box className="w-full sticky top-0 inset-y-0 z-50">
+    <Box>
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Brand />
 
-          <strong className="text-xl font-bold">
-            موسسه حمایت از کودکان مبتال به سرطان خراسان
+          <strong className="text-lg lg:text-xl font-bold truncate line-clamp-1">
+            موسسه حمایت از کودکان مبتلا به سرطان خراسان
           </strong>
         </div>
 
