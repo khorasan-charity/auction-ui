@@ -16,7 +16,7 @@ const SubjectSummary: React.FC<SubjectSummaryProps> = ({
   surplus,
 }) => {
   return (
-    <Box className="overflow-hidden text-center pt-3 pb-1 px-2">
+    <Box className="overflow-hidden text-center py-3 px-2">
       <div className="w-full flex flex-wrap gap-0 gap-y-2 items-top justify-around inset-0 py-2">
         <Chip className="bg-transparent border-0" size="lg">
           <span className="text-neutral-600 dark:text-white text-xl">
@@ -25,10 +25,10 @@ const SubjectSummary: React.FC<SubjectSummaryProps> = ({
           </span>
           <Money
             amount={totalPayment}
-            className="font-extrabold text-2xl text-indigo-600 dark:text-indigo-300"
+            className="font-extrabold text-4xl text-indigo-600 dark:text-indigo-300"
           />
         </Chip>
-        <Chip className="bg-transparent border-0 " size="lg">
+        {/* <Chip className="bg-transparent border-0 " size="lg">
           <span className="text-neutral-600 dark:text-white text-xl">
             هدف:
             &nbsp;
@@ -46,9 +46,9 @@ const SubjectSummary: React.FC<SubjectSummaryProps> = ({
             </span>
             <Money amount={surplus} className="font-extrabold text-xl dark:text-white" />
           </Chip>
-        ) : null}
+        ) : null} */}
       </div>
-      <Progress
+      {/* <Progress
         classNames={{
           base: "w-full p-2",
           track: "drop-shadow-md border border-default",
@@ -64,7 +64,7 @@ const SubjectSummary: React.FC<SubjectSummaryProps> = ({
       />
       <Chip className="bg-transparent border-0" size="lg">
         <strong className="font-semibold text-2xl ">{`${progress}%`}</strong>
-      </Chip>
+      </Chip> */}
     </Box>
   );
 };

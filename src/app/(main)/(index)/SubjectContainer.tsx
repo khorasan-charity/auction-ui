@@ -8,7 +8,7 @@ import Subject from "./Subject";
 import confetti from "canvas-confetti";
 import SubjectHeader from "./SubjectHeader";
 import SubjectSummary from "./SubjectSummary";
-import { getSubject } from "@/services/subjectService";
+import subjectService from "@/services/subjectService";
 
 interface SubjectContainerProps {}
 
@@ -26,7 +26,7 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
   });
 
   useEffect(() => {
-    getSubject().then((res) => {
+    subjectService.getSubject().then((res) => {
       setSubjects(res.items);
       setTargetAmount(
         res.items.reduce((prev, acc) => (prev += acc.targetAmount), 0)
