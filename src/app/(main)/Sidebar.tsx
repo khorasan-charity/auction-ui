@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
       ) : null}
 
       <aside
-        className={`flex flex-col gap-2 h-full fixed lg:static w-2/3 md:w-[300px] transition-all duration-300 bottom-0 right-0 top-0 z-40 ${
+        className={`flex flex-col gap-2 h-full fixed lg:static w-2/3 md:w-[300px] transition-all duration-300 bottom-0 right-0 top-0 z-40 py-3 ${
           collapsed
             ? "visible translate-x-0 [display:inherit]"
             : "invisible translate-x-full lg:!translate-x-0 lg:!visible"
