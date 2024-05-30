@@ -8,7 +8,7 @@ export default async function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="container h-screen py-3">
+    <div className="container h-screen">
       <div className="w-full h-full flex gap-x-4">
         <SidebarProvider>
           <ToggleSidebar />
