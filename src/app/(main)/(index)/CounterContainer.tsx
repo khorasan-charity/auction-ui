@@ -10,6 +10,7 @@ import CounterSummary from "./CounterSummary";
 import CounterHeader from "./CounterHeader";
 import settingService from "@/services/settingService";
 
+
 interface CounterContainerProps { }
 
 const CounterContainer: React.FC<CounterContainerProps> = () => {
@@ -47,6 +48,8 @@ const CounterContainer: React.FC<CounterContainerProps> = () => {
           targetAmount={amountPerItem * targetCount}
         />
       </div>
+
+      <img className="absolute left-0 bottom-0" src="kid.png" width={300} height={300} />
 
       <div className="relative aspect-square flex-1 w-fit">
         {Array.from({ length: 10 }, (_, i) => (
