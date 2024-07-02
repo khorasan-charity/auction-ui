@@ -59,7 +59,9 @@ const CounterContainer1: React.FC<CounterContainer1Props> = () => {
           </span>
         </div>
         
-        <div className="pt-24 flex justify-center items-center text-4xl font-semibold">
+        <img className="mx-auto pt-16" src="zendegi.png" width={400} />
+
+        {/* <div className="pt-24 flex justify-center items-center text-4xl font-semibold">
           <span>
             <span>اینجا صحبت از زندگی</span>
             &nbsp;
@@ -67,7 +69,7 @@ const CounterContainer1: React.FC<CounterContainer1Props> = () => {
             &nbsp;
             <span>است</span>
           </span>
-        </div>
+        </div> */}
 
       </div>
     </div>
