@@ -1,6 +1,6 @@
 "use client";
 
-import { getPayments, getTotalPayment } from "@/services/paymentService";
+import { getTotalPayment } from "@/services/paymentService";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import SubjectHeader from "./CounterHeader";
@@ -9,12 +9,11 @@ import { Heart } from "./heart";
 import CounterSummary from "./CounterSummary";
 import CounterHeader from "./CounterHeader";
 import settingService from "@/services/settingService";
-import Money from "@/ui/Money";
 
 
-interface CounterContainerProps { }
+interface CounterContainerOldProps { }
 
-const CounterContainer: React.FC<CounterContainerProps> = () => {
+const CounterContainerOld: React.FC<CounterContainerOldProps> = () => {
   const [progress, setProgress] = useState(0);
   const [surplus, setSurplus] = useState(0);
   const [targetCount, setTargetCount] = useState(1);
@@ -23,11 +22,6 @@ const CounterContainer: React.FC<CounterContainerProps> = () => {
     queryKey: ["get-totalPayment"],
     queryFn: getTotalPayment,
     // enabled: subjects && subjects.length > 0,
-    refetchInterval: 1000,
-  });
-  const { data: payments } = useQuery({
-    queryKey: ["get-payment"],
-    queryFn: getPayments,
     refetchInterval: 1000,
   });
 
@@ -43,11 +37,9 @@ const CounterContainer: React.FC<CounterContainerProps> = () => {
   }, [totalPayment]);
 
   return (
-    <div className="flex flex-col h-screen py-3 items-center justify-center">
-
-      <img className="absolute right-[400px] top-0 rounded-bl-3xl" src="kid-2.jpg" width={300} height={300} />
-
-      <div>
+    <div className="flex flex-col h-screen py-3 items-center">
+      <div className="sticky top-0 inset-y-0 z-50 flex flex-col gap-2 bg-gray-100 dark:bg-neutral-900 w-full">
+        <CounterHeader />
         <CounterSummary
           count={totalPayment / amountPerItem}
           targetCount={targetCount}
@@ -55,18 +47,24 @@ const CounterContainer: React.FC<CounterContainerProps> = () => {
           totalPayment={totalPayment}
           targetAmount={amountPerItem * targetCount}
         />
-
-        <div className="p-8 flex justify-center items-center text-2xl font-semibold">
-          <span>
-            <span>تعداد مشارکت تا این لحظه:</span>
-            &nbsp;
-            <span>{payments?.totalCount}</span>
-          </span>
-        </div>
-
       </div>
+
+      <img className="absolute left-0 bottom-0" src="kid.png" width={300} height={300} />
+
+      <div className="relative aspect-square flex-1 w-fit">
+        {Array.from({ length: 1 }, (_, i) => (
+          <Drop
+            key={i + (new Date()).getTime()}
+            size={30}
+            left={`${10 + Math.random() * 80}%`}
+            top={-20 + Math.random() * 40}
+          />
+        ))}
+        <Heart fillPercent={progress} />
+      </div>
+
     </div>
   );
 };
 
-export default CounterContainer;
+export default CounterContainerOld;
