@@ -13,7 +13,7 @@ export default async function MainLayoutOld({
         <SidebarProvider>
           <ToggleSidebar />
           <Sidebar />
-          <main className="h-full flex-1 overflow-y-auto hideSB container w-full xl:max-w-screen-xl px-4">
+          <main className="h-full flex-1 overflow-hidden hideSB container w-full xl:max-w-screen-xl px-4">
             {children}
           </main>
         </SidebarProvider>

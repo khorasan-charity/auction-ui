@@ -1,20 +1,19 @@
 import SidebarProvider from "@/context/SidebarContext";
 import ToggleSidebar from "@/ui/ToggleSidebar";
 import Sidebar from "../Sidebar";
-import Sidebar2 from "../Sidebar2";
 
-export default async function MainLayout({
+export default async function MainLayoutOld({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen">
-      <div className="w-full h-full flex">
+    <div className="container h-screen">
+      <div className="w-full h-full flex gap-x-4">
         <SidebarProvider>
           <ToggleSidebar />
-          <Sidebar2 />
-          <main className="h-full flex-1 overflow-hidden hideSB  w-full">
+          <Sidebar />
+          <main className="h-full flex-1 overflow-y-auto hideSB container w-full xl:max-w-screen-xl px-4">
             {children}
           </main>
         </SidebarProvider>

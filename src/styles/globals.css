@@ -47,8 +47,6 @@ body,
   scrollbar-width: none;
 }
 
-
-
 .heartContainer {
   position: relative;
   flex-direction: row;
@@ -63,15 +61,10 @@ body,
   left: 0%;
   width: 100%;
   height: 100%;
-  animation: meet 2s linear infinite;
 }
 
 .heart-svg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  animation: meet 2s linear infinite;
 }
 
 .wave {
@@ -130,9 +123,9 @@ body,
   -moz-animation-name: drip;
   -webkit-animation-name: drip;
   animation-name: drip;
-  -moz-animation-timing-function: cubic-bezier(1, 0, .91, .19);
-  -webkit-animation-timing-function: cubic-bezier(1, 0, .91, .19);
-  animation-timing-function: cubic-bezier(1, 0, .91, .19);
+  -moz-animation-timing-function: cubic-bezier(1, 0, 0.91, 0.19);
+  -webkit-animation-timing-function: cubic-bezier(1, 0, 0.91, 0.19);
+  animation-timing-function: cubic-bezier(1, 0, 0.91, 0.19);
   -moz-animation-duration: 3s;
   -webkit-animation-duration: 3s;
   animation-duration: 3s;
@@ -155,5 +148,26 @@ body,
   }
   to {
     top: 50%;
+  }
+}
+
+#coin {
+  animation: spinAndShrink 3s forwards cubic-bezier(0.25, 1, 0.5, 1);
+}
+@keyframes spinAndShrink {
+  0% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.5) rotateY(180deg);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.2) rotateY(360deg) translateY(50px);
+    opacity: 0;
   }
 }

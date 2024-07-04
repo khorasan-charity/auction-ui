@@ -51,8 +51,8 @@ const CounterContainer1: React.FC<CounterContainer1Props> = () => {
 
   return (
     <div
-      className="flex flex-col h-screen items-center justify-start px-2 relative"
-      style={{ height: "100%", backgroundColor: "#21783a" }}
+      className="flex flex-col h-screen items-center justify-start px-2 relative bg-slate-100"
+      style={{ height: "100%" }}
     >
       {/* <img className="absolute right-[400px] top-0 rounded-bl-3xl" src="kid-2.jpg" width={300} height={300} /> */}
 

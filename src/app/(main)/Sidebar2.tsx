@@ -37,7 +37,7 @@ const Sidebar2: React.FC<Sidebar2Props> = () => {
   }, []);
 
   useEffect(() => {
-    setProgress(Math.round((totalPayment / (amountPerItem * targetCount)) * 10) / 10)
+    setProgress(Math.round((totalPayment / (amountPerItem * targetCount)) * 100) / 100)
   }, [totalPayment]);
 
   return (
@@ -83,7 +83,7 @@ const Sidebar2: React.FC<Sidebar2Props> = () => {
                   color="success"
                   showValueLabel={false}
                 />
-                <div className="text-2xl font-semibold z-10">{progress * 100}%</div>
+                <div className="text-2xl font-semibold z-10">{Math.round(progress * 10000) / 100}%</div>
               </div>
               <strong className="text-lg lg:text-xl font-bold px-4 pt-8 text-center gap-2 flex flex-col">
                 <div>مشارکت شما:</div>
