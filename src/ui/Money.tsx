@@ -4,6 +4,7 @@ interface MoneyProps {
   amount?: number;
   currency?: string;
   className?: string;
+  currencyClassName?: string;
 }
 
 const Money: React.FC<MoneyProps> = (props) => {
@@ -11,7 +12,7 @@ const Money: React.FC<MoneyProps> = (props) => {
     <strong className={props.className ?? "font-bold text-xl"}>
       {numberToCurrency(props.amount ?? 0)}
       &nbsp;
-      <span className="font-normal text-sm">{props.currency ?? "تومان"}</span>
+      <span className={props.currencyClassName ?? "font-normal text-sm"}>{props.currency ?? "تومان"}</span>
     </strong>
   );
 };
