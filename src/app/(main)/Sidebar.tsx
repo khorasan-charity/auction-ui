@@ -10,17 +10,18 @@ import { HiOutlineTrash } from "react-icons/hi2";
 import { toast } from "react-hot-toast";
 import { useSidebarCollapsed } from "@/context/SidebarContext";
 import Money from "@/ui/Money";
+import { motion, AnimatePresence } from "framer-motion"
 
-interface SidebarProps {}
+interface SidebarProps { }
 
 const Sidebar: React.FC<SidebarProps> = () => {
   const { collapsed, setCollapsed } = useSidebarCollapsed();
-
   const { data: list } = useQuery({
     queryKey: ["get-payment"],
     queryFn: getPayments,
     refetchInterval: 1000,
   });
+
 
   return (
     <>
@@ -32,11 +33,10 @@ const Sidebar: React.FC<SidebarProps> = () => {
       ) : null}
 
       <aside
-        className={`flex flex-col gap-2 h-full fixed lg:static w-2/3 md:w-[300px] transition-all duration-300 bottom-0 right-0 top-0 z-40 py-3 ${
-          collapsed
-            ? "visible translate-x-0 [display:inherit]"
-            : "invisible translate-x-full lg:!translate-x-0 lg:!visible"
-        }`}
+        className={`flex flex-col gap-2 h-full max-h-screen fixed lg:static w-2/3 md:w-[300px] transition-all duration-300 bottom-0 right-0 top-0 z-40 py-3 ${collapsed
+          ? "visible translate-x-0 [display:inherit]"
+          : "invisible translate-x-full lg:!translate-x-0 lg:!visible"
+          }`}
       >
         <Box className="h-full w-full relative overflow-y-auto hideSB !pt-0 rounded-none md:rounded-xl">
           <Box.Header className="sticky bg-white dark:bg-neutral-800 inset-x-0 top-0 pt-6 pb-4 w-full flex items-center justify-center">
@@ -46,12 +46,19 @@ const Sidebar: React.FC<SidebarProps> = () => {
           <Box.Body>
             <div className="overflow-y-auto w-full flex flex-col gap-3">
               {list?.items?.map((item) => (
-                <UserPayment
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  amount={item.amount}
-                />
+                <AnimatePresence key={item.id} >
+                  <motion.div className="relative"
+                    initial={{ opacity: 1, x: -200 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 1, x: 0 }}
+                    >
+                    <UserPayment
+                      id={item.id}
+                      name={item.name}
+                      amount={item.amount}
+                    />
+                  </motion.div>
+                </AnimatePresence>
               ))}
             </div>
           </Box.Body>
@@ -106,7 +113,7 @@ const DeletePaymentItem = ({ id }: { id: number }) => {
           toast.success("حذف شد!");
         },
       });
-    } catch (_) {}
+    } catch (_) { }
   };
 
   return (

@@ -10,7 +10,7 @@ import SubjectHeader from "./SubjectHeader";
 import SubjectSummary from "./SubjectSummary";
 import subjectService from "@/services/subjectService";
 
-interface SubjectContainerProps {}
+interface SubjectContainerProps { }
 
 const SubjectContainer: React.FC<SubjectContainerProps> = () => {
   const [subjects, setSubjects] = useState<ISubject[]>([]);
@@ -75,12 +75,14 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
         const interval = setInterval(() => {
           confetti({
             particleCount: 15,
+            scalar: 3,
             angle: 60,
             spread: 80,
             origin: { x: 0 },
           });
           confetti({
             particleCount: 15,
+            scalar: 3,
             angle: 120,
             spread: 80,
             origin: { x: 1 },
