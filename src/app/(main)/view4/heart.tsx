@@ -287,7 +287,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(232,129,2)",
+                  fill: "#929292",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -304,7 +304,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(243,158,9)",
+                  fill: "#d2d2d2",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -319,7 +319,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(232,129,2)",
+                  fill: "#a2a2a2",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -335,7 +335,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -351,7 +351,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(253,216,53)",
+                  fill: "#e2e2e2",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -367,7 +367,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -383,7 +383,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -399,7 +399,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -415,7 +415,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -431,7 +431,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}
@@ -447,7 +447,7 @@ export function Heart(props: HeartProps) {
                   strokeLinecap: "butt",
                   strokeLinejoin: "miter",
                   strokeMiterlimit: 10,
-                  fill: "rgb(254,236,154)",
+                  fill: "white",
                   fillRule: "nonzero",
                   opacity: 1,
                 }}

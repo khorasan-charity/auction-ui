@@ -6,7 +6,7 @@ export default async function MainLayout({
   return (
     <div className="h-screen">
       <div className="w-full h-full flex">
-        <main className="h-full flex-1 overflow-hidden hideSB  w-full">
+        <main className="light h-full flex-1 overflow-hidden hideSB w-full">
           {children}
         </main>
       </div>

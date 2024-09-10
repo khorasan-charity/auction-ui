@@ -7,7 +7,7 @@ import { HiOutlineEye, HiOutlineEyeSlash } from "react-icons/hi2";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegister<FieldValues> | any;
+  register?: UseFormRegister<FieldValues> | any;
   errors?: FieldErrors | any;
   validationSchema?: object;
   name: React.InputHTMLAttributes<HTMLInputElement>["name"];
@@ -36,7 +36,7 @@ const Input: React.FC<InputProps> = ({
           spellCheck={false}
           type={type === "password" ? (show ? "text" : "password") : type}
           className={twMerge("textField__input", className)}
-          {...register(name!, validationSchema || {})}
+          {...(register && register(name!, validationSchema || {}) || {})}
           {...props}
         />
         {!!endContent && (
