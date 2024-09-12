@@ -3,7 +3,7 @@
 import { getPayments, getTotalPayment } from "@/services/paymentService";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import settingService from "@/services/settingService";
+import {getSettings} from "@/services/settingService";
 import CounterSummary from "../(index)/CounterSummary";
 import { Heart } from "./heart";
 
@@ -29,7 +29,7 @@ const CounterContainer1: React.FC<CounterContainer1Props> = () => {
   });
 
   useEffect(() => {
-    settingService.getSettings().then((res) => {
+    getSettings().then((res) => {
       setTargetCount(res.children.totalNeededSupportCount);
       setAmountPerItem(res.children.costPerYear);
     });

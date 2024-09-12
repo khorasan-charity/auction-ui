@@ -6,7 +6,7 @@ import Input from "@/ui/input/Input";
 import { numberToCurrency } from "@/utils/numberToCurrency";
 import { Button } from "@nextui-org/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -15,6 +15,7 @@ interface PaymentFormProps {}
 interface IFormPayment {
   name: string;
   amount: string;
+  suffix: string;
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = () => {
@@ -25,29 +26,39 @@ const PaymentForm: React.FC<PaymentFormProps> = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
     watch,
   } = useForm<IFormPayment>();
   const watchAmount = watch("amount");
+  const watchSuffix = watch("suffix");
 
   const { mutateAsync: addNewPayment, isPending } = useMutation({
     mutationKey: ["add-payment"],
     mutationFn: addPayments,
   });
 
+  useEffect(() => {
+    setValue("suffix", "000");
+  }, []);
+
   const onSubmit = useCallback(
     async (data: IFormPayment) => {
       try {
-        await addNewPayment(data, {
-          onSuccess: () => {
-            reset();
-            queryClient.invalidateQueries({
-              queryKey: ["get-payment"],
-            });
-            toast.success("پرداخت با موفقیت ثبت شد");
-            document.getElementById("amount")?.focus();
-          },
-        });
+        await addNewPayment(
+          { name: data.name, amount: data.amount + data.suffix },
+          {
+            onSuccess: () => {
+              reset();
+              setValue("suffix", "000");
+              queryClient.invalidateQueries({
+                queryKey: ["get-payment"],
+              });
+              toast.success("پرداخت با موفقیت ثبت شد");
+              document.getElementById("amount")?.focus();
+            },
+          }
+        );
       } catch (_) {
         toast.error("ثبت پرداخت با خطا مواجه شد");
       }
@@ -68,18 +79,29 @@ const PaymentForm: React.FC<PaymentFormProps> = () => {
         register={register}
         errors={errors}
       />
-      <Input
-        placeholder="مبلغ"
-        name="amount"
-        register={register}
-        endContent="تومان"
-        errors={errors}
-        validationSchema={{ required: "لطفا مبلغ را وارد کنید" }}
-        autoFocus
-      />
+      <div className="flex flex-row gap-x-1" dir="ltr">
+        <Input
+          name="amount"
+          register={register}
+          placeholder="مبلغ"
+          errors={errors}
+          validationSchema={{ required: "لطفا مبلغ را وارد کنید" }}
+          style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+          autoFocus
+        />
+        <Input
+          name="suffix"
+          register={register}
+          errors={errors}
+          validationSchema={{ required: "لطفا عدد وارد کنید" }}
+          style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+          maxLength={3}
+          minLength={3}
+        />
+      </div>
       <div className="text-center">
         <strong className="font-extrabold text-lg text-left">
-          {numberToCurrency(watchAmount, "تومان")}
+          {numberToCurrency(watchAmount + watchSuffix, "تومان")}
         </strong>
       </div>
       <Button

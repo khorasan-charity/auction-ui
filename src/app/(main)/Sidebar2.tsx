@@ -12,7 +12,7 @@ import { useSidebarCollapsed } from "@/context/SidebarContext";
 import Money from "@/ui/Money";
 import { Progress } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import settingService from "@/services/settingService";
+import {getSettings} from "@/services/settingService";
 
 interface Sidebar2Props { }
 
@@ -30,7 +30,7 @@ const Sidebar2: React.FC<Sidebar2Props> = () => {
   });
 
   useEffect(() => {
-    settingService.getSettings().then((res) => {
+    getSettings().then((res) => {
       setTargetCount(res.children.totalNeededSupportCount)
       setAmountPerItem(res.children.costPerYear);
     });

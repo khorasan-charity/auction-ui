@@ -8,7 +8,7 @@ import { Drop } from "./drop";
 import { Heart } from "./heart";
 import CounterSummary from "./CounterSummary";
 import CounterHeader from "./CounterHeader";
-import settingService from "@/services/settingService";
+import {getSettings} from "@/services/settingService";
 
 interface CounterContainerProps {}
 
@@ -26,7 +26,7 @@ const CounterContainer: React.FC<CounterContainerProps> = () => {
   });
 
   useEffect(() => {
-    settingService.getSettings().then((res) => {
+    getSettings().then((res) => {
       setTargetCount(res.children.totalNeededSupportCount);
       setAmountPerItem(res.children.costPerYear);
     });

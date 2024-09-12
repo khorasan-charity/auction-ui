@@ -49,8 +49,8 @@ const Subject: React.FC<SubjectProps> = (props) => {
       setValue("id", props.id!);
       setValue("title", props.title!);
       setValue("targetAmount", props.targetAmount!);
-      setValue("order", props.order!);
     }
+    setValue("order", props.order ?? 1);
   }, [props]);
 
   const { mutateAsync: addSubject, isPending: isAddPending } = useMutation({
@@ -65,7 +65,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
     });
 
   async function handleDelete(id: number) {
-    await subjectService.deleteSubject(id)
+    await subjectService.deleteSubject(id);
     await queryClient.invalidateQueries({
       queryKey: ["get-subject"],
     });
@@ -106,14 +106,14 @@ const Subject: React.FC<SubjectProps> = (props) => {
 
   return (
     <Card
-      className={`w-full shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br from-neutral-600 to-neutral-800`}
+      className={`w-full overflow-visible shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br from-neutral-600 to-neutral-800`}
     >
       <CardBody className="flex justify-center items-center pb-0">
         <form
           noValidate
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-4"
+          className="space-y-4 w-full"
         >
           <Input
             placeholder="عنوان"
@@ -132,9 +132,10 @@ const Subject: React.FC<SubjectProps> = (props) => {
             validationSchema={{ required: "لطفا مبلغ را وارد کنید" }}
           />
           <div className="text-center">
-            <strong className="font-extrabold text-lg text-left text-white">
-              {numberToCurrency(watchAmount, "تومان")}
-            </strong>
+            <Money
+              amount={watchAmount}
+              className="text-white font-extrabold text-lg"
+            />
           </div>
           <Input
             placeholder="ترتیب نمایش"
@@ -143,26 +144,28 @@ const Subject: React.FC<SubjectProps> = (props) => {
             errors={errors}
             validationSchema={{ required: "لطفا ترتیب را وارد کنید" }}
           />
-          <Button
-            fullWidth
-            radius="sm"
-            isLoading={isAddPending || isUpdatePending}
-            color="success"
-            type="submit"
-          >
-            {props.addMode ? "افزودن" : "بروزرسانی"}
-          </Button>
-
-          {!props.addMode && (
+          <div className="flex flex-row gap-x-2">
             <Button
               fullWidth
               radius="sm"
-              color="danger"
-              onClick={() => handleDelete(props.id!)}
+              isLoading={isAddPending || isUpdatePending}
+              color="success"
+              type="submit"
             >
-              حذف
+              {props.addMode ? "افزودن" : "بروزرسانی"}
             </Button>
-          )}
+
+            {!props.addMode && (
+              <Button
+                fullWidth
+                radius="sm"
+                color="danger"
+                onClick={() => handleDelete(props.id!)}
+              >
+                حذف
+              </Button>
+            )}
+          </div>
         </form>
       </CardBody>
       <CardFooter className="flex justify-center items-center pt-5 text-white"></CardFooter>

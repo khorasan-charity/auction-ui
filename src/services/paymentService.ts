@@ -3,7 +3,7 @@ import { SchemaApi } from "@/types/shared";
 import http from "./httpService";
 
 export const getPayments = (): Promise<SchemaApi<PaymentItem[]>> => {
-  return http.get("/payment").then((res) => res.data);
+  return http.get("/payment?Sorting=CreationTime%20DESC").then((res) => res.data);
 };
 
 export const addPayments = (data: object): Promise<any> => {
@@ -16,4 +16,8 @@ export const deletePayment = (data: number) => {
 
 export const getTotalPayment = (): Promise<number> => {
   return http.get("/payment/total").then((res) => res.data);
+};
+
+export const getTotalContributionCount = (): Promise<number> => {
+  return http.get("/payment/contribution-count").then((res) => res.data);
 };

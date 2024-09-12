@@ -29,7 +29,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
 
   return (
     <Card
-      className={`w-full shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br ${
+      className={`w-full overflow-visible shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br ${
         !props.progress
           ? colors["neutral"]
           : props.progress < 100

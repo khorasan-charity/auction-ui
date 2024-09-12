@@ -9,14 +9,10 @@ export default async function MainLayoutOld({
 }) {
   return (
     <div className="container h-screen">
-      <div className="w-full h-full flex gap-x-4">
-        <SidebarProvider>
-          <ToggleSidebar />
-          <Sidebar />
-          <main className="h-full flex-1 overflow-hidden hideSB container w-full xl:max-w-screen-xl px-4">
-            {children}
-          </main>
-        </SidebarProvider>
+      <div className="w-full h-full">
+        <main className="h-full flex-1 overflow-hidden hideSB container w-full xl:max-w-screen-xl">
+          {children}
+        </main>
       </div>
     </div>
   );

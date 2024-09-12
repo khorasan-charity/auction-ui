@@ -10,7 +10,7 @@ const ToggleSidebar = () => {
   return (
     <button
       onClick={setCollapsed}
-      className="absolute top-5 left-5 block md:hidden"
+      className="absolute top-5 right-5 block lg:hidden"
     >
       <HiOutlineBars3 className="w-8 h-8 text-neutral-800 dark:text-white" />
     </button>
