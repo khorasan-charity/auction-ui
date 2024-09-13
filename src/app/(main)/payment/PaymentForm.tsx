@@ -3,6 +3,7 @@
 import { useSidebarCollapsed } from "@/context/SidebarContext";
 import { addPayments } from "@/services/paymentService";
 import Input from "@/ui/input/Input";
+import Money from "@/ui/Money";
 import { numberToCurrency } from "@/utils/numberToCurrency";
 import { Button } from "@nextui-org/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -100,9 +101,7 @@ const PaymentForm: React.FC<PaymentFormProps> = () => {
         />
       </div>
       <div className="text-center">
-        <strong className="font-extrabold text-lg text-left">
-          {numberToCurrency(watchAmount + watchSuffix, "تومان")}
-        </strong>
+        <Money amount={parseInt(watchAmount + watchSuffix)} className="font-extrabold text-lg" />
       </div>
       <Button
         fullWidth

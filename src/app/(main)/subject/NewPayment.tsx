@@ -1,6 +1,4 @@
-import {
-  getPayments,
-} from "@/services/paymentService";
+import { getPayments } from "@/services/paymentService";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,9 +16,12 @@ const NewPayment: React.FC<Props> = () => {
   const [lastTotalPaymentCount, setLastTotalPaymentCount] = useState(0);
   const [normalPaymentMaximum, setNormalPaymentMaximum] = useState(2000000);
   const [normalPaymentDuration, setNormalPaymentDuration] = useState(2);
+  const [disableNormalPayment, setDisableNormalPayment] = useState(false);
   const [silverPaymentMaximum, setSilverPaymentMaximum] = useState(10000000);
   const [silverPaymentDuration, setSilverPaymentDuration] = useState(4);
+  const [disableSilverPayment, setDisableSilverPayment] = useState(false);
   const [goldPaymentDuration, setGoldPaymentDuration] = useState(8);
+  const [disableGoldPayment, setDisableGoldPayment] = useState(false);
 
   const { data: list } = useQuery({
     queryKey: ["get-payment"],
@@ -38,17 +39,30 @@ const NewPayment: React.FC<Props> = () => {
 
     setLastTotalPaymentCount((prev) => {
       if ((list?.totalCount || 0) > prev) {
-        setLastPayment(lastItem);
-        setTimeout(
-          () => {
-            setLastPayment(null);
-          },
+        let paymentCategory =
           lastItem!.amount >= silverPaymentMaximum
-            ? goldPaymentDuration * 1000
+            ? "gold"
             : lastItem!.amount >= normalPaymentMaximum
-            ? silverPaymentDuration * 1000
-            : normalPaymentDuration * 1000
-        );
+            ? "silver"
+            : "normal";
+
+        const duration: any = {
+          normal: normalPaymentDuration * 1000,
+          silver: silverPaymentDuration * 1000,
+          gold: goldPaymentDuration * 1000,
+        };
+        const isDisabled: any = {
+          normal: disableNormalPayment,
+          silver: disableSilverPayment,
+          gold: disableGoldPayment,
+        };
+
+        if (!isDisabled[paymentCategory]) {
+          setLastPayment(lastItem);
+          setTimeout(() => {
+            setLastPayment(null);
+          }, duration[paymentCategory]);
+        }
       }
 
       return list?.totalCount || 0;
@@ -64,6 +78,9 @@ const NewPayment: React.FC<Props> = () => {
         parseInt(settings?.normalPaymentDuration ?? "0")
       );
     }
+    if (settings?.disableNormalPayment) {
+      setDisableNormalPayment(settings?.disableNormalPayment == "true");
+    }
     if (settings?.silverPaymentMaximum) {
       setSilverPaymentMaximum(parseInt(settings?.silverPaymentMaximum ?? "0"));
     }
@@ -72,8 +89,14 @@ const NewPayment: React.FC<Props> = () => {
         parseInt(settings?.silverPaymentDuration ?? "0")
       );
     }
+    if (settings?.disableSilverPayment) {
+      setDisableSilverPayment(settings?.disableSilverPayment == "true");
+    }
     if (settings?.goldPaymentDuration) {
       setGoldPaymentDuration(parseInt(settings?.goldPaymentDuration ?? "0"));
+    }
+    if (settings?.disableGoldPayment) {
+      setDisableGoldPayment(settings?.disableGoldPayment == "true");
     }
   }, [settings]);
 

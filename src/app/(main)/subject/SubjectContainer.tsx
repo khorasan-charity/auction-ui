@@ -15,6 +15,8 @@ import subjectService from "@/services/subjectService";
 import Webcam from "react-webcam";
 import { Button } from "@nextui-org/react";
 import { getSettings } from "@/services/settingService";
+import Subject2 from "./Subject2";
+import Subject3 from "./Subject3";
 
 interface SubjectContainerProps {}
 
@@ -30,6 +32,7 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
   const [deviceId, setDeviceId] = useState<any>(undefined);
   const [devices, setDevices] = useState([]);
   const [showCameraSettings, setShowCameraSettings] = useState(false);
+  const [subjectTheme, setSubjectTheme] = useState("1");
 
   const { data: totalPayment = 0 } = useQuery({
     queryKey: ["get-totalPayment"],
@@ -76,6 +79,9 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
     }
     if (settings?.confettiDuration) {
       setConfettiDuration(parseInt(settings?.confettiDuration ?? "0"));
+    }
+    if (settings?.subjectTheme) {
+      setSubjectTheme(settings?.subjectTheme ?? "1");
     }
   }, [settings]);
 
@@ -188,9 +194,16 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
         </div>
       ) : (
         <div className="w-full grid grid-cols-12 gap-4 h-[calc(100vh-15.5rem)] overflow-y-auto px-1">
-          {subjects?.map((item) => (
-            <Subject key={item.id} {...item} />
-          ))}
+          {subjects?.map((item) => {
+            switch (subjectTheme) {
+              case "1":
+                return <Subject key={item.id} {...item} />;
+              case "2":
+                return <Subject2 key={item.id} {...item} />;
+              case "3":
+                return <Subject3 key={item.id} {...item} />;
+            }
+          })}
         </div>
       )}
     </>
