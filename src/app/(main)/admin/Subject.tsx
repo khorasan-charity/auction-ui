@@ -106,7 +106,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
 
   return (
     <Card
-      className={`w-full overflow-visible shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br from-neutral-600 to-neutral-800`}
+      className={`w-full max-h-[370px] overflow-visible shadow-none col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-3 border-none bg-gradient-to-br from-neutral-600 to-neutral-800`}
     >
       <CardBody className="flex justify-center items-center pb-0">
         <form
@@ -122,6 +122,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
             errors={errors}
             validationSchema={{ required: "لطفا عنوان را وارد کنید" }}
             autoFocus
+            aria-label="Title"
           />
           <Input
             placeholder="مبلغ"
@@ -130,6 +131,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
             endContent="تومان"
             errors={errors}
             validationSchema={{ required: "لطفا مبلغ را وارد کنید" }}
+            aria-label="Amount"
           />
           <div className="text-center">
             <Money
@@ -143,6 +145,7 @@ const Subject: React.FC<SubjectProps> = (props) => {
             register={register}
             errors={errors}
             validationSchema={{ required: "لطفا ترتیب را وارد کنید" }}
+            aria-label="Order"
           />
           <div className="flex flex-row gap-x-2">
             <Button
