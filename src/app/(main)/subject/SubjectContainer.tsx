@@ -6,7 +6,7 @@ import {
 } from "@/services/paymentService";
 import { Subject as ISubject } from "@/types/subject";
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Subject from "./Subject";
 import confetti from "canvas-confetti";
 import SubjectHeader from "./SubjectHeader";
@@ -33,6 +33,7 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
   const [devices, setDevices] = useState([]);
   const [showCameraSettings, setShowCameraSettings] = useState(false);
   const [subjectTheme, setSubjectTheme] = useState("1");
+  const bc = useRef(new BroadcastChannel("confetti"));
 
   const { data: totalPayment = 0 } = useQuery({
     queryKey: ["get-totalPayment"],
@@ -68,6 +69,26 @@ const SubjectContainer: React.FC<SubjectContainerProps> = () => {
         res.items.reduce((prev, acc) => (prev += acc.targetAmount), 0)
       );
     });
+    if (bc.current != null) {
+      bc.current.onmessage = (ev) => {
+        if (ev.data == "show") {
+          confetti({
+            particleCount: 10,
+            scalar: 4,
+            angle: -35,
+            spread: 100,
+            origin: { x: 0, y: 0 },
+          });
+          confetti({
+            particleCount: 10,
+            scalar: 4,
+            angle: 220,
+            spread: 100,
+            origin: { x: 1, y: 0 },
+          });
+        }
+      };
+    }
   }, []);
 
   useEffect(() => {

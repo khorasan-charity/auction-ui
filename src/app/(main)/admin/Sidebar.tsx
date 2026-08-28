@@ -18,7 +18,7 @@ import {
   Radio,
   RadioGroup,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface SidebarProps {}
 
@@ -35,6 +35,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
   const [goldPaymentDuration, setGoldPaymentDuration] = useState("8");
   const [showMoneyShorter, setShowMoneyShorter] = useState("true");
   const [disableGoldPayment, setDisableGoldPayment] = useState("false");
+  const bc = useRef(new BroadcastChannel("confetti"));
 
   const { data: settings } = useQuery({
     queryKey: ["get-settings"],
@@ -75,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
 
       <Box.Body className="overflow-y-auto h-[calc(100vh-10rem)] p-0 px-1">
         <div className="overflow-y-auto w-full flex flex-col gap-3">
-          <ButtonGroup>
+          <ButtonGroup className="">
             <Button
               color="success"
               onClick={() => setSettingValue("camera", "on")}
@@ -90,7 +91,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             </Button>
           </ButtonGroup>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <span>قالب موضوعات</span>
             <RadioGroup
               value={subjectTheme}
@@ -109,7 +110,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <span>مدت نمایش کاغذ رنگی (ثانیه)</span>
             <div className="flex flex-row gap-x-2">
               <Input
@@ -126,10 +127,16 @@ const Sidebar: React.FC<SidebarProps> = () => {
               >
                 اعمال
               </Button>
+              <Button
+                color="success"
+                onClick={() => bc.current.postMessage("show")}
+              >
+                نمایش
+              </Button>
             </div>
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <span>مدت نمایش خودکار دوربین پس از تکمیل یک موضوع (ثانیه)</span>
             <div className="flex flex-row gap-x-2">
               <Input
@@ -149,7 +156,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <span>پرداخت‌های عادی</span>
             <Input
               label="از صفر تا مبلغ (تومان)"
@@ -194,7 +201,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <span>پرداخت‌های نقره‌ای</span>
             <Input
               label="از عادی تا مبلغ (تومان)"
@@ -239,7 +246,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <span>پرداخت‌های طلایی</span>
             <Input
               label="مکث (ثانیه)"
@@ -270,7 +277,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200">
+          <div className="flex flex-col justify-center items-center gap-y-2 border-1 rounded-md p-2 bg-slate-200 dark:bg-slate-900 dark:border-slate-600">
             <Checkbox
               color="success"
               isSelected={showMoneyShorter == "true"}
